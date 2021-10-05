@@ -1,4 +1,4 @@
-import misaka
+import mistune
 import os
 import requests
 import uuid
@@ -25,8 +25,7 @@ def get_pics_list(md_content):
     :param md_content:
     :return:
     """
-    md_render = misaka.Markdown(misaka.HtmlRenderer())
-    html = md_render(md_content)
+    html = mistune.html(md_content)
     soup = BeautifulSoup(html, features='html.parser')
     pics_list = []
     for img in soup.find_all('img'):
@@ -49,7 +48,7 @@ def download_pics(url, file):
 
 if __name__ == '__main__':
     files_list = get_files_list(os.path.abspath(os.path.join('.', 'files')))
-
+    print(files_list)
     for file in files_list:
         print(f'正在处理：{file}')
 
